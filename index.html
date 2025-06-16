@@ -3,21 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Calcolatore Batteria</title>
-  <link rel="manifest" href="manifest.json">
+  <title>Calcolatore Carica Batterie</title>
   <style>
     body { font-family: sans-serif; padding: 20px; }
-    label, input, button { display: block; margin: 10px 0; }
+    label, input, button, select { display: block; margin: 10px 0; }
     .result { margin-top: 20px; background: #f3f3f3; padding: 10px; border-left: 4px solid #007BFF; }
   </style>
 </head>
 <body>
-  <h2>Calcolatore Orario Carica</h2>
-  <label>Orario inizio:</label>
-  <input type="time" id="startTime">
-  <label>Percentuale iniziale:</label>
-  <input type="number" id="startPercent" min="0" max="100">
-  <button onclick="calcola()">Calcola</button>
+  <h2>Calcolo Carica Batterie</h2>
+
+  <label>Modalità:</label>
+  <select id="mode">
+    <option value="target">Raggiungi % specifica</option>
+    <option value="tempo">Ho tempo limitato</option>
+  </select>
+
+  <div id="form-target">
+    <label>Orario inizio:</label>
+    <input type="time" id="startTime">
+    <label>Percentuale iniziale:</label>
+    <input type="number" id="startPercent" min="0" max="100">
+    <button onclick="calcolaTarget()">Calcola % Obiettivo</button>
+  </div>
+
+  <div id="form-tempo" style="display:none">
+    <label>Orario inizio:</label>
+    <input type="time" id="startTime2">
+    <label>Orario fine:</label>
+    <input type="time" id="endTime">
+    <label>Percentuale iniziale:</label>
+    <input type="number" id="startPercent2" min="0" max="100">
+    <button onclick="calcolaTempo()">Calcola risultato</button>
+  </div>
+
   <div id="result" class="result"></div>
 
   <script src="app.js"></script>
